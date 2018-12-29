@@ -30,6 +30,16 @@ namespace PolBasis
                 Assert.AreEqual(expectedResult, actualResult);
             }
 
+            [Test]
+            [TestCase("11101010011111111110000000100100000010010011000010000110001101110101010100101101001010101001001010110001000101001100110110010011001111010001001010110011110010101011000010000", "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")]
+            public void ZeroFindTest(string pol1, string expectedResult)
+            {
+                int[] a = new int[1];
+                a = Field.String_To_Byte(pol1);
+                var actualResult = Field.Byte_To_String(Field.Add(a, a));
+                Assert.AreEqual(expectedResult, actualResult);
+            }
+
 
         }
     }

@@ -8,6 +8,9 @@ namespace PolBasis
 {
     class Field
     {
+        const string Zero = "0";
+        const string One = "1";
+
         public static int[] String_To_Byte(string polynom)
         {
             var bitlenth = polynom.Length;
@@ -43,6 +46,5 @@ namespace PolBasis
             }
             return result;
         }
-
     }
 }
