@@ -16,7 +16,7 @@ namespace PolBasis
             int[] p2 = new int[1];
             p1 = Field.String_To_Byte(a);
             p2 = Field.String_To_Byte(b);
-            Console.WriteLine(Field.Add(p1, p2));
+            Console.WriteLine(Field.Byte_To_String(Field.Add(p1, p2)));
             Console.ReadKey();
         }
     }

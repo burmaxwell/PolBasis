@@ -22,6 +22,17 @@ namespace PolBasis
 
         }
 
+        public static string Byte_To_String(int[] polynom)
+        {
+            StringBuilder stringline = new StringBuilder();
+            for (int i = 0; i < polynom.Length; i++)
+            {
+                stringline.Append(Convert.ToString(polynom[i], 2));
+            }
+            return stringline.ToString();
+        }
+
+
         public static int[] Add(int[]a,int[]b)
         {
             int[] result = new int[a.Length];
