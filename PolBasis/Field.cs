@@ -49,7 +49,7 @@ namespace PolBasis
             return result;
         }
 
-        public static int[] Expansion(int[] arr, int size) //расширает массив , добывает нули в старшие разряды(стдвиг влево) 
+        public static int[] Expansion(int[] arr, int size) //расширает массив , добывает нули в старшие разряды 
         {
             int[] extended_array = new int[size];
             for (var i = 0; i < arr.Length; i++)
@@ -61,12 +61,12 @@ namespace PolBasis
 
         public static int[] RemoveHighZeros(int[] arr, int dimension)// пока хз как оно должно работать 
         {
-            int[] clean_result = new int[dimension-arr.Length];
+            int[] clean_result = new int[dimension-arr.Length] ;
 
             return clean_result;
         }
 
-        public static int[] ShiftBits(int[]arr,int ind) // сдвигаем биты для умножения в сторону высших разрядов(сдвиг вправо) 
+        public static int[] ShiftBits(int[]arr,int ind) // сдвигаем биты для умножения в сторону высших разрядов
         {
             int[] result = new int[arr.Length+ind];
             for(int i=0;i<arr.Length;i++)
@@ -76,9 +76,41 @@ namespace PolBasis
             return result;
         }
 
+        public static int[] Div_two_polynoms(int[]a)
+        {
+            //string generator = "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010111";
+            string generator = "1011";
+            int[] generator_arr = new int[1];
+            int[] rest = new int[1];
+            int[] temp = new int[1];
+            generator_arr = String_To_Byte(generator);
+
+            if (a.Length<generator_arr.Length)
+            {
+                return a;
+            }
+            else
+            {
+                temp = ShiftBits(generator_arr, a.Length - generator_arr.Length);
+                rest = Add(a, temp);
+            }
+            return rest;
+        }
+
         public static int[] Mul(int[] a, int[] b)
         {
-            int[] result = new int[a.Length*2];
+            int[] temp = new int[1];
+            int[] result = new int[1];
+            for(int i=0;i<a.Length;i++)
+            {
+                if (b[i]==1)
+                {
+                    temp = ShiftBits(a, i);
+                    result = Add(result, temp);
+                }
+            }
+            result = Div_two_polynoms(result);
+
             return result;
         }
     }
