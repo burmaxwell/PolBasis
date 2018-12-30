@@ -40,6 +40,15 @@ namespace PolBasis
                 Assert.AreEqual(expectedResult, actualResult);
             }
 
+            [Test]
+            [TestCase("1110101001111111","111010100111111100000000000000000000")]
+            public void ShiftBitsTest(string pol1, string expectedResult)
+            {
+                int[] a = new int[1];
+                a = Field.String_To_Byte(pol1);
+                var actualResult = Field.Byte_To_String(Field.ShiftBits(a,20));
+                Assert.AreEqual(expectedResult, actualResult);
+            }
 
         }
     }

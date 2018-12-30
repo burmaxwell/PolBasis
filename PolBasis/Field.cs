@@ -48,5 +48,38 @@ namespace PolBasis
             }
             return result;
         }
+
+        public static int[] Expansion(int[] arr, int size) //расширает массив , добывает нули в старшие разряды(стдвиг влево) 
+        {
+            int[] extended_array = new int[size];
+            for (var i = 0; i < arr.Length; i++)
+            {
+                extended_array[i] = arr[i];
+            }
+            return extended_array;
+        }
+
+        public static int[] RemoveHighZeros(int[] arr, int dimension)// пока хз как оно должно работать 
+        {
+            int[] clean_result = new int[dimension-arr.Length];
+
+            return clean_result;
+        }
+
+        public static int[] ShiftBits(int[]arr,int ind) // сдвигаем биты для умножения в сторону высших разрядов(сдвиг вправо) 
+        {
+            int[] result = new int[arr.Length+ind];
+            for(int i=0;i<arr.Length;i++)
+            {
+                result[i+ind] = arr[i];
+            }
+            return result;
+        }
+
+        public static int[] Mul(int[] a, int[] b)
+        {
+            int[] result = new int[a.Length*2];
+            return result;
+        }
     }
 }
