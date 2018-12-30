@@ -10,8 +10,8 @@ namespace PolBasis
     {
         static void Main(string[] args)
         {
-            string a = "011";
-            string b = "011";
+            string a = "001110000111";
+            string b = "111";
             int[] p1 = new int[1];
             int[] p2 = new int[1];
             p1 = Field.String_To_Byte(a);
