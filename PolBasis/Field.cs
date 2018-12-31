@@ -67,6 +67,15 @@ namespace PolBasis
             return clean_result;
         }
 
+        public static int[] LenghtControl(int[]a)
+        {
+            if (a.Length < 178)
+            {
+                Array.Resize(ref a, 179);
+            }
+            return a;
+        }
+
         public static int[] ShiftBits(int[]arr,int ind) 
         {
             int[] result = new int[arr.Length+ind];
@@ -100,7 +109,7 @@ namespace PolBasis
                 result = Add(result, temp);
                 }
             }
-            return result;
+            return LenghtControl( result);
         }
 
         public static int[] Mul(int[] a, int[] b)
@@ -135,6 +144,21 @@ namespace PolBasis
             result =Div_two_polynoms(A);
             return result;
         } 
+        
+        public static int[] Trace(int[]a)
+        {
+            int[] result = new int[1];
+            int[] temp = new int[1];
+            result = a;
+            temp = a;
+            for(int i=1;i<179;i++)
+            {
+                temp = Square(temp);
+                result =Add(result, temp);
+            }
+            result = Div_two_polynoms(result);
+            return result;
+        }
             
             
             
