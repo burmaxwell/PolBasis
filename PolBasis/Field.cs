@@ -123,5 +123,20 @@ namespace PolBasis
 
             return result;
         }
-    }
+
+        public static int [] Square (int[] a)
+        {
+            int[] A = new int[2*a.Length];
+            int[] result = new int[1];
+            for(int i=0;i<a.Length;i++)
+            {
+                A[2 * i] = a[i];
+            }
+            result =Div_two_polynoms(A);
+            return result;
+        } 
+            
+            
+            
+     }
 }
