@@ -227,6 +227,6 @@ namespace PolBasis
             if (ans1 == ans2) return One;
             else return Zero;
         }
-        /
+        
     }
 }
