@@ -162,7 +162,7 @@ namespace PolBasis
           
         public static int[] BigPower(int [] a, int [] n)
         {
-            string One = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001";
+            string One = "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001";
             int[] result = new int[a.Length];
             result = String_To_Byte(One);
             for(int i=0;i<a.Length;i++)
@@ -174,8 +174,59 @@ namespace PolBasis
                 a = Square(a);
             }
             return result;
-        } 
-            
-            
-     }
+        }
+
+         public static int[] Inverse_el(int[]a)
+          {
+              string One = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001";
+              int[] inversed = new int[a.Length];
+              int[] temp = new int[a.Length];
+              int[] n = new int[a.Length];
+              n = String_To_Byte(One);
+              inversed = String_To_Byte(One);
+              temp = BigPower(a, n);
+
+              for(int i=1;i<a.Length;i++)
+              {
+                  inversed = Mul(inversed, temp);
+                  temp = Square(temp);
+              }
+              inversed = Square(inversed);
+              return inversed;
+          }
+          
+
+
+        // :(
+        
+        /*public static int[] Inverse_el(int[] a) //
+        {
+            int[] lambda = new int[a.Length];
+            int[] inversed = new int[a.Length];
+
+            lambda[0] = 0;
+            for(int i=1;i<a.Length;i++)
+            {
+                lambda[i] = 1;
+            }
+
+            inversed=BigPower (a, lambda);
+            return inversed;
+        }*/
+
+        public static int[] Check_abc(int[]a, int[]b, int[]c)
+        {
+            int[] One = new int[1];
+            One[0] = 1;
+            int[] Zero = new int[1];
+            Zero[0] = 1;
+            int[] ans1 = new int[a.Length];
+            int[] ans2 = new int[a.Length];
+            ans1 = Mul(c, Add(a, b));
+            ans2 = Add(Mul(c, a), Mul(c, b));
+            if (ans1 == ans2) return One;
+            else return Zero;
+        }
+
+    }
 }
