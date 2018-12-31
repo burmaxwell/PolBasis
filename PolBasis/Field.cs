@@ -159,7 +159,22 @@ namespace PolBasis
             result = Div_two_polynoms(result);
             return result;
         }
-            
+          
+        public static int[] BigPower(int [] a, int [] n)
+        {
+            string One = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001";
+            int[] result = new int[a.Length];
+            result = String_To_Byte(One);
+            for(int i=0;i<a.Length;i++)
+            {
+                if(n[i]==1)
+                {
+                    result = Mul(result, a);
+                }
+                a = Square(a);
+            }
+            return result;
+        } 
             
             
      }
