@@ -46,27 +46,28 @@ namespace PolBasis
                 result[i] = (a[i] ^ b[i]);
 
             }
-            return result;
+            return RemoveHighZeros(result,maxlenght);
         }
 
-        public static int[] Expansion(int[] arr, int size) //расширает массив , добывает нули в старшие разряды 
-        {
-            int[] extended_array = new int[size];
-            for (var i = 0; i < arr.Length; i++)
+        public static int[] RemoveHighZeros(int[] arr,int dim)
+        {            
+            int iter = 0;
+            var i = dim-1;
+            while (arr[i]==0)
             {
-                extended_array[i] = arr[i];
+                iter++;
+                i--;
+                if (i == -1) return arr;
             }
-            return extended_array;
-        }
-
-        public static int[] RemoveHighZeros(int[] arr, int dimension)// пока хз как оно должно работать 
-        {
-            int[] clean_result = new int[dimension-arr.Length] ;
-
+            int[] clean_result = new int[arr.Length-iter];
+            for (int j=0;j<arr.Length-iter;j++)
+            {
+                clean_result[j] = arr[j];
+            }
             return clean_result;
         }
 
-        public static int[] ShiftBits(int[]arr,int ind) // сдвигаем биты для умножения в сторону высших разрядов
+        public static int[] ShiftBits(int[]arr,int ind) 
         {
             int[] result = new int[arr.Length+ind];
             for(int i=0;i<arr.Length;i++)
@@ -78,27 +79,36 @@ namespace PolBasis
 
         public static int[] Div_two_polynoms(int[]a)
         {
-            //string generator = "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010111";
-            string generator = "1011";
+            string generator = "100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010111";
             int[] generator_arr = new int[1];
-            int[] rest = new int[1];
-            int[] temp = new int[1];
             generator_arr = String_To_Byte(generator);
+            int[] result = new int[1];
+            result = a;
+            int len_a = a.Length;
+            var maxlenght = Math.Max(a.Length, generator_arr.Length);
 
-            if (a.Length<generator_arr.Length)
+            if (a.Length <generator_arr.Length)
             {
                 return a;
             }
             else
             {
-                temp = ShiftBits(generator_arr, a.Length - generator_arr.Length);
-                rest = Add(a, temp);
+                int[] temp = new int[1];
+                while ( result.Length >= generator_arr.Length)
+                { 
+                temp = ShiftBits(generator_arr, result.Length - generator_arr.Length);
+                result = Add(result, temp);
+                }
             }
-            return rest;
+            return result;
         }
 
         public static int[] Mul(int[] a, int[] b)
         {
+            var maxlenght = Math.Max(a.Length, b.Length);
+            Array.Resize(ref a, maxlenght);
+            Array.Resize(ref b, maxlenght);
+
             int[] temp = new int[1];
             int[] result = new int[1];
             for(int i=0;i<a.Length;i++)
