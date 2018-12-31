@@ -90,6 +90,19 @@ namespace PolBasis
                 Assert.AreEqual(expectedResult, actualResult);
             }
 
+            [Test]
+            [TestCase("10110010001101110100010110001100011000110001110001011001101111111000010100001001101011100111010000010000111011001110100000101010001100011001110010111001010100011010100110010001100",
+                "01000110100011011000110000010100010011000000000010011100010110111001000100100000111110010101100110000111110110011001000111100100001101001101010101001011011000100010101101110100011",
+                "1")]
+            public void OneFindTest(string pol1, string pol2 ,string expectedResult)
+            {
+                int[] a = new int[1];
+                int[] b = new int[1];
+                a = Field.String_To_Byte(pol1);
+                b = Field.String_To_Byte(pol2);
+                var actualResult = Field.Byte_To_String(Field.Mul(a, b));
+                Assert.AreEqual(expectedResult, actualResult);
+            }
 
         }
     }
